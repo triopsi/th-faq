@@ -133,13 +133,14 @@ function thfaq_getOutputList( $thfaq_query, $post ) {
 			$htmlout .= '<!--' . $i . '-->';
 
 			$htmlout .= '<div class="card th-faq-card">';
-			$htmlout .= '<div class="card-header th-faq-card-header">';
-			// $htmlout .= '<h2 class="mb-0">';
 			$htmlout .= '<a class="th-faq-link-title" role="button" href="#th' . $id_faq . '" data-toggle="collapse" aria-expanded="false" aria-controls="th' . $id_faq . '">';
+			$htmlout .= '<div class="card-header border-0 p-3 pr-5 th-faq-card-header">';
+			$htmlout .= '<h6 class="mb-0">';
 			$htmlout .= esc_html( $title_faq );
-			$htmlout .= '</a>';
-			// $htmlout .= '</h2>';
+			$htmlout .= '</h6>';
 			$htmlout .= '</div>';
+			$htmlout .= '</a>';
+			
 			$htmlout .= '<div id="th' . $id_faq . '" class="collapse th-faq-collapse" aria-labelledby="th' . $id_faq . '" data-parent="#thAccordionFAQ">';
 			$htmlout .= '<div class="card-body th-faq-body">';
 			$htmlout .= $body_faq;
