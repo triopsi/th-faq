@@ -33,9 +33,6 @@ function thfaq_check_version() {
 // Loaded Plugin.
 add_action( 'plugins_loaded', 'thfaq_check_version' );
 
-// Add Admin panel.
-// add_action( 'admin_enqueue_scripts', 'add_admin_thfaq_style_js' );
-
 /**
  * Undocumented function
  *
@@ -47,7 +44,7 @@ function add_admin_thfaq_style_js() {
 	global $post_type;
 
 	if ( 'thfaq' === $post_type ) {
-
+		
 	}
 
 }

@@ -35,20 +35,12 @@ if ( ! defined( 'THFAQ_VERSION' ) ) {
 /* Loads plugin's text domain. */
 add_action( 'init', 'thfaq_load_plugin_textdomain' );
 
-/* Admin */
+// Add Admin Actions.
 require_once 'inc/thfaq-admin.php';
 require_once 'inc/thfaq-types.php';
 
-// require_once 'inc/thpp-post-metabox.php';
-// require_once 'inc/thpp-help.php';
-// require_once 'inc/thpp-setting.php';
-
-// /* Shortcode */
-// require_once 'inc/thpp-user.php';
+// Shortcode.
 require_once 'inc/thfaq-shortcode.php';
-
-// /* Widget */
-// require_once 'inc/thpp-widget.php';
 
 /**
  * Init Script. Load languages
