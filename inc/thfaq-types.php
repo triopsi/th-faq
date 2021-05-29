@@ -24,6 +24,25 @@
 // Registers the teams post type.
 add_action( 'init', 'register_thfaq_type' );
 
+// Register new taxonomy.
+add_action( 'init', 'register_thfaq_taxonomy' );
+
+// Add update messages.
+add_filter( 'post_updated_messages', 'thfaq_updated_messages' );
+
+// Add new Column.
+add_filter( 'manage_edit-thfaqs_categories_columns', 'thfaq_custom_categories_add_new_columns' );
+
+// Adds the shortcode column in the postslistbar.
+add_filter( 'manage_thfaq_posts_columns', 'add_thfaq_columns' );
+
+// Handles shortcode column display.
+add_action( 'manage_thfaq_posts_custom_column', 'thfaq_custom_columns', 10, 2 );
+
+// Add new Column.
+add_action( 'manage_thfaqs_categories_custom_column', 'thfaq_custom_categories_columns', 10, 3 );
+
+
 /**
  * Function about the ini of the Plugin
  *
@@ -33,19 +52,19 @@ function register_thfaq_type() {
 
 	// Defines labels.
 	$labels = array(
-		'name'               => __( 'TH Faq', 'thfaq' ),
+		'name'               => __( 'TH FAQ', 'thfaq' ),
 		'singular_name'      => __( 'FAQ', 'thfaq' ),
 		'menu_name'          => __( 'TH FAQ', 'thfaq' ),
 		'name_admin_bar'     => __( 'TH FAQ', 'thfaq' ),
-		'add_new'            => __( 'Add New Faq', 'thfaq' ),
-		'add_new_item'       => __( 'Add New Faq', 'thfaq' ),
-		'new_item'           => __( 'New Faq', 'thfaq' ),
-		'edit_item'          => __( 'Edit Faq', 'thfaq' ),
-		'view_item'          => __( 'View Faq', 'thfaq' ),
-		'all_items'          => __( 'All Faqs', 'thfaq' ),
-		'search_items'       => __( 'Search Faqs', 'thfaq' ),
-		'not_found'          => __( 'No Faqs found.', 'thfaq' ),
-		'not_found_in_trash' => __( 'No Faqs found in Trash.', 'thfaq' ),
+		'add_new'            => __( 'Add New FAQ', 'thfaq' ),
+		'add_new_item'       => __( 'Add New FAQ', 'thfaq' ),
+		'new_item'           => __( 'New FAQ', 'thfaq' ),
+		'edit_item'          => __( 'Edit FAQ', 'thfaq' ),
+		'view_item'          => __( 'View FAQ', 'thfaq' ),
+		'all_items'          => __( 'All FAQs', 'thfaq' ),
+		'search_items'       => __( 'Search FAQs', 'thfaq' ),
+		'not_found'          => __( 'No FAQs found.', 'thfaq' ),
+		'not_found_in_trash' => __( 'No FAQs found in Trash.', 'thfaq' ),
 	);
 
 	// Defines permissions.
@@ -68,7 +87,6 @@ function register_thfaq_type() {
 	register_post_type( 'thfaq', $args );
 
 }
-
 
 /**
  * Function to register post taxonomies
@@ -106,11 +124,6 @@ function register_thfaq_taxonomy() {
 	register_taxonomy( 'thfaqs_categories', array( 'thfaq' ), $args );
 
 }
-add_action( 'init', 'register_thfaq_taxonomy' );
-
-
-// Add update messages.
-add_filter( 'post_updated_messages', 'thfaq_updated_messages' );
 
 /**
  * Update post message functions
@@ -150,8 +163,35 @@ function thfaq_custom_columns( $column, $post_id ) {
 	}
 }
 
-// Handles shortcode column display.
-add_action( 'manage_thfaq_posts_custom_column', 'thfaq_custom_columns', 10, 2 );
+
+/**
+ * Shortcodestyle function.
+ *
+ * @param String  $string Content.
+ * @param Array   $columns Collumn.
+ * @param Integer $term_id Post ID.
+ */
+function thfaq_custom_categories_columns( $string, $columns, $term_id ) {
+	switch ( $columns ) {
+		case 'thfaq_cat_shortcode':
+			$slug      = get_term( $term_id, 'thfaqs_categories' );
+			$shortcode = '<span class="shortcode"><input type="text" onfocus="this.select();" readonly="readonly" value="[thfaq category=' . $slug->slug . ']" class="large-text code"></span>';
+			echo $shortcode; // phpcs:ignore
+			break;
+	}
+}
+
+/**
+ * Add New collumn.
+ *
+ * @param Array $columns All Columns.
+ * @return Array All Columns with new col.
+ */
+function thfaq_custom_categories_add_new_columns( $columns ) {
+
+	$columns['thfaq_cat_shortcode'] = __( 'Shortcode', 'thfaq' );
+	return $columns;
+}
 
 /**
  * AdminCollumnBar function.
@@ -160,11 +200,9 @@ add_action( 'manage_thfaq_posts_custom_column', 'thfaq_custom_columns', 10, 2 );
  * @return Array Arraymerge.
  */
 function add_thfaq_columns( $columns ) {
-	$columns['title'] = __( 'Partner name', 'thfaq' );
+	$columns['title'] = __( 'Question', 'thfaq' );
 	unset( $columns['author'] );
 	unset( $columns['date'] );
-	return array_merge( $columns, array( 'thfaq_shortcode' => 'Shortcode' ) );
+	return array_merge( $columns, array( 'thfaq_shortcode' => __( 'Shortcode', 'thfaq' ) ) );
 }
 
-// Adds the shortcode column in the postslistbar.
-add_filter( 'manage_thfaq_posts_columns', 'add_thfaq_columns' );

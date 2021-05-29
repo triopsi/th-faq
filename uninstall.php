@@ -21,12 +21,14 @@
  * @package thfaq
  **/
 
-// if uninstall.php is not called by WordPress, die
+// if uninstall.php is not called by WordPress, die.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	die;
 }
 
 delete_option( 'thfaq_plugin_version' );
+delete_option( 'thfaq_settings_cdn_awesome' );
+delete_option( 'thfaq_settings_cdn_bootstrap' );
 
 // Delete metadata and posts.
 $post_type_arg   = array(

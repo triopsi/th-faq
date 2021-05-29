@@ -41,7 +41,9 @@ Nothing yet.
  
 == Screenshots ==
 
-1. Site
+1. FAQ 
+2. Manage FAQ
+3. Edit/Save FAQ 
  
 == Changelog ==
 

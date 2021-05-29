@@ -21,8 +21,39 @@
  * @package thfaq
  **/
 
+// Add Scripts.
+add_action( 'wp_enqueue_scripts', 'add_admin_thfaq_style_js' );
+
 // Shortcode on the Page.
 add_shortcode( 'thfaq', 'thfaq_sh' );
+
+/**
+ * Undocumented function
+ *
+ * @return void
+ */
+function add_admin_thfaq_style_js() {
+
+	wp_register_style( 'th-faq-fronted-style', plugins_url( 'assets/css/front-style.css', THFAQ_PLUGIN_FILE ), array(), THFAQ_VERSION, 'all' );
+	wp_enqueue_style( 'th-faq-fronted-style' );
+
+	$use_awesome_cdn   = get_option( 'thfaq_settings_cdn_awesome' );
+	$use_bootstrap_cdn = get_option( 'thfaq_settings_cdn_bootstrap' );
+
+	if ( $use_awesome_cdn ) {
+
+		// Font Awesome.
+		wp_enqueue_style( 'thfaq-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', array(), '5.15.3', 'all' );
+	}
+
+	if ( $use_bootstrap_cdn ) {
+
+		// Bootstrap.
+		wp_enqueue_script( 'thfaq-bootstrap-js', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js', array(), '4.6.0', true );
+		wp_enqueue_style( 'thfaq-bootstrap-css', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css', array(), '4.6.0', 'all' );
+	}
+
+}
 
 /**
  * Show the Shortcode in the post/site/content.
@@ -36,6 +67,7 @@ function thfaq_sh( $atts ) {
 	global $post;
 
 	// Shortcode Parameter.
+	// phpcs:ignore
 	extract(
 		shortcode_atts(
 			array(
@@ -46,7 +78,7 @@ function thfaq_sh( $atts ) {
 			),
 			$atts
 		)
-	); // phpcs:ignore
+	);
 
 	$order    = ( strtolower( $order ) === 'asc' ) ? 'ASC' : 'DESC';
 	$orderby  = ! empty( $orderby ) ? $orderby : 'date';
@@ -69,7 +101,7 @@ function thfaq_sh( $atts ) {
 
 	// Search with category.
 	if ( ! empty( $category ) ) {
-		$query_args['tax_query'] = array(
+		$query_args['tax_query'] = array( // phpcs:ignore
 			array(
 				'taxonomy' => 'thfaqs_categories',
 				'field'    => 'name',
@@ -87,7 +119,7 @@ function thfaq_sh( $atts ) {
 	if ( $thfaq_query->have_posts() ) {
 		ob_start();
 		$o        = ob_get_clean();
-		$htmlout .= thfaq_getOutputList( $thfaq_query, $post );
+		$htmlout .= thfaq_get_output_list( $thfaq_query, $post );
 	}
 	wp_reset_postdata(); // Reset WP Query.
 	return $o . $htmlout;
@@ -102,7 +134,7 @@ function thfaq_sh( $atts ) {
  * @param WC_Post $post Acutal Post.
  * @return String HTML Code.
  */
-function thfaq_getOutputList( $thfaq_query, $post ) {
+function thfaq_get_output_list( $thfaq_query, $post ) {
 
 	$htmlout = '<!-- Start Triopsi Hosting FAQ List -->';
 
@@ -131,16 +163,14 @@ function thfaq_getOutputList( $thfaq_query, $post ) {
 			$i++;
 
 			$htmlout .= '<!--' . $i . '-->';
-
 			$htmlout .= '<div class="card th-faq-card">';
-			$htmlout .= '<a class="th-faq-link-title" role="button" href="#th' . $id_faq . '" data-toggle="collapse" aria-expanded="false" aria-controls="th' . $id_faq . '">';
+			$htmlout .= '<a class="th-faq-link-title collapsed" role="button" href="#th' . $id_faq . '" data-toggle="collapse" aria-expanded="false" aria-controls="th' . $id_faq . '">';
 			$htmlout .= '<div class="card-header border-0 p-3 pr-5 th-faq-card-header">';
 			$htmlout .= '<h6 class="mb-0">';
 			$htmlout .= esc_html( $title_faq );
 			$htmlout .= '</h6>';
 			$htmlout .= '</div>';
 			$htmlout .= '</a>';
-			
 			$htmlout .= '<div id="th' . $id_faq . '" class="collapse th-faq-collapse" aria-labelledby="th' . $id_faq . '" data-parent="#thAccordionFAQ">';
 			$htmlout .= '<div class="card-body th-faq-body">';
 			$htmlout .= $body_faq;
@@ -148,7 +178,7 @@ function thfaq_getOutputList( $thfaq_query, $post ) {
 			$htmlout .= '</div>';
 			$htmlout .= '</div>';
 
-	  endforeach;
+		endforeach;
 
 		$htmlout .= '</div>';
 	}

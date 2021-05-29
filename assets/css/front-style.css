@@ -1,24 +1,31 @@
 /**
-* Front Editor CSS
+* Front CSS
 **/
-.thpp-panel {
+
+#thAccordionFAQ .th-faq-link-title{
+    text-decoration: none;
+    color: #0d0d0d;
     position: relative;
-    width:100%;
 }
 
-.cS-hidden {
-    height: 1px;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    overflow: hidden;
+#thAccordionFAQ a.th-faq-link-title[data-toggle="collapse"].collapsed::before{
+    top: 15px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    color: #3c4858 !important;
 }
 
-.thpp-partner:hover{
-    opacity: 0.7;
-    -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
-}
-
-li.thpp-partner img{
-    width: 100%;
+#thAccordionFAQ a.th-faq-link-title[data-toggle="collapse"]::before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f106";
+    display: block;
+    font-size: 18px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }

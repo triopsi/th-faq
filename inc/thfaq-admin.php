@@ -21,6 +21,9 @@
  * @package thfaq
  **/
 
+// Loaded Plugin.
+add_action( 'plugins_loaded', 'thfaq_check_version' );
+
 /**
  * Version Check.
  */
@@ -28,25 +31,6 @@ function thfaq_check_version() {
 	if ( THFAQ_VERSION !== get_option( 'thfaq_plugin_version' ) ) {
 		thfaq_activation();
 	}
-}
-
-// Loaded Plugin.
-add_action( 'plugins_loaded', 'thfaq_check_version' );
-
-/**
- * Undocumented function
- *
- * @return void
- */
-function add_admin_thfaq_style_js() {
-
-	// Gets the post type.
-	global $post_type;
-
-	if ( 'thfaq' === $post_type ) {
-		
-	}
-
 }
 
 /**

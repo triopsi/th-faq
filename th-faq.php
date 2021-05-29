@@ -29,8 +29,10 @@
 
 // Definie plugin version.
 if ( ! defined( 'THFAQ_VERSION' ) ) {
-	define( 'THFAQ_VERSION', '1.0.0.' );
+	define( 'THFAQ_VERSION', '1.0.0' );
 }
+
+define( 'THFAQ_PLUGIN_FILE', __FILE__ );
 
 /* Loads plugin's text domain. */
 add_action( 'init', 'thfaq_load_plugin_textdomain' );
@@ -38,6 +40,8 @@ add_action( 'init', 'thfaq_load_plugin_textdomain' );
 // Add Admin Actions.
 require_once 'inc/thfaq-admin.php';
 require_once 'inc/thfaq-types.php';
+require_once 'inc/thfaq-help.php';
+require_once 'inc/thfaq-setting.php';
 
 // Shortcode.
 require_once 'inc/thfaq-shortcode.php';
@@ -48,5 +52,5 @@ require_once 'inc/thfaq-shortcode.php';
  * @return void
  */
 function thfaq_load_plugin_textdomain() {
-	load_plugin_textdomain( 'thfaq', '', 'th-partner-slider/lang/' );
+	load_plugin_textdomain( 'thfaq', '', 'th-faq/lang/' );
 }
