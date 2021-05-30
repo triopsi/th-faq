@@ -4,15 +4,19 @@
 
 #thAccordionFAQ .th-faq-link-title{
     text-decoration: none;
-    color: #0d0d0d;
+    color: #242c35;
     position: relative;
+}
+
+#thAccordionFAQ a.th-faq-link-title[data-toggle="collapse"].collapsed{
+    color: #242c35;
 }
 
 #thAccordionFAQ a.th-faq-link-title[data-toggle="collapse"].collapsed::before{
     top: 15px;
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    color: #3c4858 !important;
+    color: #242c35;
 }
 
 #thAccordionFAQ a.th-faq-link-title[data-toggle="collapse"]::before{
@@ -28,4 +32,22 @@
     transform: translateY(-50%);
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+
+/* Design 2 */
+.th-design-2 .th-faq-card{
+    border-radius: 6px !important;
+    margin-bottom: .5rem !important;
+    border: 0 !important;
+}
+
+.th-design-2 .th-faq-card-header:first-child{
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.th-design-2 .th-faq-card-header{
+    padding-right: 40px !important;
+    background-color: #f7f8f9 !important;
+    padding: 1rem !important;
+    border: 0 !important;
 }

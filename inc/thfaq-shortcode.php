@@ -136,6 +136,17 @@ function thfaq_sh( $atts ) {
  */
 function thfaq_get_output_list( $thfaq_query, $post ) {
 
+	$design = get_option( 'thfaq_settings_design', 'design-1' );
+
+	switch ( $design ) {
+		case 'design-1':
+			$css = '';
+			break;
+		case 'design-2':
+			$css = 'th-design-2';
+			break;
+	}
+
 	$htmlout = '<!-- Start Triopsi Hosting FAQ List -->';
 
 	if ( $thfaq_query->have_posts() ) {
@@ -143,7 +154,7 @@ function thfaq_get_output_list( $thfaq_query, $post ) {
 		// itteration.
 		$i = 0;
 
-		$htmlout .= '<div class="accordion" id="thAccordionFAQ">';
+		$htmlout .= '<div class="accordion ' . $css . '" id="thAccordionFAQ">';
 
 		// Outputt all Services.
 		foreach ( $thfaq_query->get_posts() as $single_faq ) :

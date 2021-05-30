@@ -40,6 +40,7 @@ function thfaq_settings_init() {
 	// register new settings.
 	register_setting( 'thfaq', 'thfaq_settings_cdn_awesome' );
 	register_setting( 'thfaq', 'thfaq_settings_cdn_bootstrap' );
+	register_setting( 'thfaq', 'thfaq_settings_design' );
 
 	// Font Awesome CDN.
 	add_settings_section(
@@ -74,6 +75,23 @@ function thfaq_settings_init() {
 		'thfaq',
 		'thfaq_settings_section_bootstrap_cdn'
 	);
+
+	// Design Section.
+	add_settings_section(
+		'thfaq_settings_section_design',
+		'Designs',
+		'thfaq_settings_design_section_cb',
+		'thfaq'
+	);
+
+	// Design Choose.
+	add_settings_field(
+		'thfaq_settings_design',
+		__( 'Which design?', 'thfaq' ),
+		'thfaq_settings_field_design_cb',
+		'thfaq',
+		'thfaq_settings_section_design'
+	);
 }
 
 /**
@@ -99,6 +117,38 @@ function thfaq_settings_field_bootstrap_cdn_cb() {
 }
 
 /**
+ * Design Field.
+ */
+function thfaq_settings_field_design_cb() {
+	$old_setting_value = ( ! empty( get_option( 'thfaq_settings_design' ) ) ? get_option( 'thfaq_settings_design' ) : 'design-1' );
+	?>
+	<select id="th-option-design" name="thfaq_settings_design">
+		<option value="design-1" <?php selected( get_option( 'thfaq_settings_design' ), 'design-1' ); ?>><?php esc_html_e( 'Design 1', 'thfaq' ); ?></option>
+		<option value="design-2" <?php selected( get_option( 'thfaq_settings_design' ), 'design-2' ); ?>><?php esc_html_e( 'Design 2', 'thfaq' ); ?></option>
+	</select>
+	<div style="margin-top: 2em;" id="th-design-review">
+	<img src="<?php echo esc_url( plugins_url( '../assets/img/' . $old_setting_value . '.png', __FILE__ ) ); ?>">
+	</div>
+	<script>
+		;(function ($) {
+			$('#th-option-design').on('change', function () {
+				var design = $(this).val();
+				var reviewfield = $('#th-design-review');
+				if( design ){
+					if ( 'design-1' == design ){
+						reviewfield.html('<img src="<?php echo esc_url( plugins_url( '../assets/img/design-1.png', __FILE__ ) ); ?>">');
+					}
+					if ( 'design-2' == design ){
+						reviewfield.html('<img src="<?php echo esc_url( plugins_url( '../assets/img/design-2.png', __FILE__ ) ); ?>">');
+					}
+				}
+			});
+		})(jQuery);
+	</script>
+	<?php
+}
+
+/**
  * Font Awesome library CDN Header.
  */
 function thfaq_settings_cdn_section_cb() {
@@ -110,6 +160,13 @@ function thfaq_settings_cdn_section_cb() {
  */
 function thfaq_settings_cdn_bootstrap_section_cb() {
 	esc_html_e( 'Want to use the CDN for Bootrap library?', 'thfaq' );
+}
+
+/**
+ * Design Section Header.
+ */
+function thfaq_settings_design_section_cb() {
+	esc_html_e( 'Choose a design', 'thfaq' );
 }
 
 /**
@@ -171,6 +228,7 @@ function thfaq_options_page_html() {
 				<pre>thfaq_plugin_version: <?php print_r( get_option( 'thfaq_plugin_version' ) ); // phpcs:ignore ?></pre>
 				<pre>thfaq_settings_cdn_awesome: <?php print_r( get_option( 'thfaq_settings_cdn_awesome' ) ); // phpcs:ignore ?></pre>
 				<pre>thfaq_settings_cdn_bootstrap: <?php print_r( get_option( 'thfaq_settings_cdn_bootstrap' ) ); // phpcs:ignore ?></pre>
+				<pre>thfaq_settings_design: <?php print_r( get_option( 'thfaq_settings_design' ) ); // phpcs:ignore ?></pre>
 				<pre><?php esc_html_e( 'All FAQs', 'thfaq' ); ?>: <?php print_r( thfaq_show_all_faqs() ); // phpcs:ignore ?></pre>
 			</div><!-- /.debug-info -->
 		<?php } ?>

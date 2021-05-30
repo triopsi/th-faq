@@ -13,14 +13,15 @@ A simple FAQ Plugin for WordPress. Add and manage frequently asked questions on 
  
 == Description ==
 
-The "TH FAQ" plugin is a very simple way, to show requently asked questions on a site or in a site. It's have a responsive design
-and is very easys to use it.
+The "TH FAQ" plugin is a very simple way, to show requently asked questions on a site or in a site. It's have a responsive designs
+and is very easys to use it. Copy-paste the shortcode [thfaq] anywhere in your post or site for show a accordion.
 
 = Create features =
  
-*   Create and manage the questions
-*   Add Shortcodes in your post or sites 
-*   Responsives design
+* Create and manage the questions
+* Add Shortcodes in your post or sites 
+* Responsives designs
+* Choose from two designs
 
 = Bugs, technical hints or contribute =
 
@@ -41,9 +42,10 @@ Nothing yet.
  
 == Screenshots ==
 
-1. FAQ 
-2. Manage FAQ
-3. Edit/Save FAQ 
+1. FAQ Design 1 
+2. FAQ Design 2
+3. Edit/Save FAQ
+4. Manage FAQ
  
 == Changelog ==
 
