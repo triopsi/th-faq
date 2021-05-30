@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TH FAQ 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/th-faq\n"
-"POT-Creation-Date: 2021-05-29T13:39:47+02:00\n"
-"PO-Revision-Date: 2021-05-29 13:39+0200\n"
+"POT-Creation-Date: 2021-05-30T13:38:02+02:00\n"
+"PO-Revision-Date: 2021-05-30 13:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -42,7 +42,7 @@ msgstr "triopsi"
 msgid "How It Works"
 msgstr "Wie es funktioniert"
 
-#: inc/thfaq-help.php:41 inc/thfaq-setting.php:164
+#: inc/thfaq-help.php:41 inc/thfaq-setting.php:219
 msgid "Help"
 msgstr "Hilfe"
 
@@ -136,53 +136,69 @@ msgstr "Checke die Plugin Dokumentation für Shortcode Parametern."
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: inc/thfaq-help.php:117 inc/thfaq-setting.php:163
+#: inc/thfaq-help.php:117 inc/thfaq-setting.php:218
 msgid "Donate"
 msgstr "Spenden"
 
-#: inc/thfaq-setting.php:55
+#: inc/thfaq-setting.php:56
 msgid "Use Font Awesome CDN?"
 msgstr "Benutze Font Awesome CDN?"
 
-#: inc/thfaq-setting.php:72
+#: inc/thfaq-setting.php:73
 msgid "Use Bootstrap CDN?"
 msgstr "Benutze Bootstrap CDN?"
 
-#: inc/thfaq-setting.php:87 inc/thfaq-setting.php:99
+#: inc/thfaq-setting.php:90
+msgid "Which design?"
+msgstr "Welches Design?"
+
+#: inc/thfaq-setting.php:104 inc/thfaq-setting.php:115
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: inc/thfaq-setting.php:107
+#: inc/thfaq-setting.php:126
+msgid "Design 1"
+msgstr ""
+
+#: inc/thfaq-setting.php:127
+msgid "Design 2"
+msgstr ""
+
+#: inc/thfaq-setting.php:155
 msgid "Want to use the CDN for Font Awesome Icons?"
 msgstr "CDN für die Font Awesome Icon Bibliothek benutzen?"
 
-#: inc/thfaq-setting.php:114
+#: inc/thfaq-setting.php:162
 msgid "Want to use the CDN for Bootrap library?"
 msgstr "CDN für die Twitter Bootstrap Bibliothek benutzen?"
 
-#: inc/thfaq-setting.php:123 inc/thfaq-setting.php:124
+#: inc/thfaq-setting.php:169
+msgid "Choose a design"
+msgstr "Wähle ein Design aus"
+
+#: inc/thfaq-setting.php:178 inc/thfaq-setting.php:179
 msgid "TH FAQ Options"
 msgstr "TH FAQ Einstellungen"
 
-#: inc/thfaq-setting.php:154
+#: inc/thfaq-setting.php:209
 msgid "Save Settings"
 msgstr "Speichere Einstellungen"
 
-#: inc/thfaq-setting.php:161
+#: inc/thfaq-setting.php:216
 msgid "Supports"
 msgstr "Hilfen"
 
-#: inc/thfaq-setting.php:171
+#: inc/thfaq-setting.php:226
 msgid "Debug information"
 msgstr "Debug Informationen"
 
-#: inc/thfaq-setting.php:172
+#: inc/thfaq-setting.php:227
 msgid "You are seeing this because your WP_DEBUG variable is set to true."
 msgstr ""
 "Du siehst diese Einstellungen, weil die WP_DEBU Variable auf true gesetzt "
 "worden ist."
 
-#: inc/thfaq-setting.php:176 inc/thfaq-types.php:64
+#: inc/thfaq-setting.php:232 inc/thfaq-types.php:64
 msgid "All FAQs"
 msgstr "Alle FAQs"
 
@@ -290,10 +306,10 @@ msgstr "FAQ gepeichert."
 msgid "FAQ draft updated."
 msgstr "FAQ Entwurf gespeichert."
 
-#: inc/thfaq-types.php:191 inc/thfaq-types.php:205
+#: inc/thfaq-types.php:192 inc/thfaq-types.php:206
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: inc/thfaq-types.php:202
+#: inc/thfaq-types.php:203
 msgid "Question"
 msgstr "Frage"
