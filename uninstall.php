@@ -29,6 +29,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 delete_option( 'thfaq_plugin_version' );
 delete_option( 'thfaq_settings_cdn_awesome' );
 delete_option( 'thfaq_settings_cdn_bootstrap' );
+delete_option( 'thfaq_settings_design' );
 
 // Delete metadata and posts.
 $post_type_arg   = array(
